@@ -2,10 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './style.css';
 
-function Tile(prop) {
+function Tile(props) {
 	return (
-		<button className="tile">
-			{prop.value}
+		<button className="tile" onClick={props.onClick}>
+			{props.value}
 		</button>
 	)
 }
@@ -15,13 +15,25 @@ class Board extends React.Component {
 		super(props);
 		this.state = {
 			tiles: Array(54).fill(null),
+			count: 0,
 		};
+
+	this.handleClick = this.handleClick.bind(this);
+	}
+
+
+	handleClick(i) {
+		const tiles = this.state.tiles.slice();
+		tiles[i] = this.state.count + 1;
+		this.setState({
+			tiles: tiles,
+		});
 	}
 
 	renderTile(i) {
 		return (
 			<Tile
-				value={i}
+				value={this.state.tiles[i]}
 				onClick={() => this.handleClick(i)}
 			/>
 		);
@@ -124,3 +136,8 @@ ReactDOM.render(
 	<Game />,
 	document.getElementById('root')
 );
+
+
+//change values to 0
+//clicking adds a value
+//exploding function
