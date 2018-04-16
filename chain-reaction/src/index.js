@@ -2,47 +2,47 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './style.css';
 
-function Tile(props) {
-	return (
-		<button className="tile" onClick={props.onClick}>
-			{props.value}
-		</button>
-	)
+class Tile extends React.Component {
+	constructor(prop) {
+		super(prop);
+		this.state = {
+			count: 0,
+		}
+		this.handleClick = this.handleClick.bind(this);
+	}
+
+	handleClick() {
+		this.setState({
+			count: this.state.count + 1,
+		});
+	}
+
+	render() {
+		return (
+			<button className="tile" onClick={this.handleClick}>
+				{this.state.count}
+			</button>
+		)
+	}
 }
 
 class Board extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			tiles: Array(54).fill(null),
-			count: 0,
-		};
-
-	this.handleClick = this.handleClick.bind(this);
-	}
-
-
-	handleClick(i) {
-		const tiles = this.state.tiles.slice();
-		tiles[i] = this.state.count + 1;
-		this.setState({
-			tiles: tiles,
-		});
+	constructor(prop) {
+		super(prop);
+		this.state ={}
 	}
 
 	renderTile(i) {
 		return (
-			<Tile
-				value={this.state.tiles[i]}
-				onClick={() => this.handleClick(i)}
+			<Tile 
 			/>
 		);
 	}
 
-	render () {
+	render() {
 		return (
 			<div className="container">
-				<div className="board-row">
+				<div className='board-row'>
 					{this.renderTile(0)}
 					{this.renderTile(1)}
 					{this.renderTile(2)}
@@ -117,27 +117,22 @@ class Board extends React.Component {
 			</div>
 		);
 	}
-};
-
+	
+}
 
 class Game extends React.Component {
 	render() {
 		return (
-			<div className="game">
-				<div className ="game-board">
+			<div>
+				<div>
 					<Board />
 				</div>
 			</div>
 		)
-	}	
+	}
 }
 
 ReactDOM.render(
 	<Game />,
 	document.getElementById('root')
 );
-
-
-//change values to 0
-//clicking adds a value
-//exploding function
