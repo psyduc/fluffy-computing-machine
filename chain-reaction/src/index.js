@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import './style.css';
 
 class Tile extends React.Component {
-	constructor(prop) {
-		super(prop);
+	constructor(props) {
+		super(props);
 		this.state = {
 			count: 0,
 		}
@@ -19,7 +19,7 @@ class Tile extends React.Component {
 
 	render() {
 		return (
-			<button className="tile" onClick={this.handleClick}>
+			<button id={this.props.id} className="tile" onClick={this.handleClick}>
 				{this.state.count}
 			</button>
 		)
@@ -27,14 +27,17 @@ class Tile extends React.Component {
 }
 
 class Board extends React.Component {
-	constructor(prop) {
-		super(prop);
-		this.state ={}
+	constructor(props) {
+		super(props);
+		this.state = {
+
+		}
 	}
 
 	renderTile(i) {
 		return (
-			<Tile 
+			<Tile
+				id={i} 
 			/>
 		);
 	}
@@ -123,8 +126,8 @@ class Board extends React.Component {
 class Game extends React.Component {
 	render() {
 		return (
-			<div>
-				<div>
+			<div className="game">
+				<div className="game-board">
 					<Board />
 				</div>
 			</div>
