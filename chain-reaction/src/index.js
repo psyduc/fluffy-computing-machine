@@ -13,69 +13,50 @@ class Tile extends React.Component {
 
 	incrementCount() {
 		this.setState({ count: this.state.count + 1 }, () => {
-			console.log(this.state.count)
+			// console.log(this.state.count)
 		})
 	}
 
 	twoReset() {
-		if(this.state.count === 2) {
-			this.state.count = 0;
-		}
+		if(this.state.count === 1) {
+			this.setState({count: 0})}
 	}
 
 	threeReset() {
-		if(this.state.count === 3) {
-			this.state.count = 0;
-		}
+		if(this.state.count === 2) {
+			this.setState({count: 0})}
 	}
 
 	fourReset() {
-		if(this.state.count === 4) {
-			this.state.count = 0;
-		}
+		if(this.state.count === 3) {
+			this.setState({count: 0})}
 	}
 
 	handleClick() {
 
 		this.incrementCount();
+		console.log(this.props.id)
 
-		switch(this.props.id) {
-			case 0:
-				console.log(this.props.id);//top left corner
-			break;
-
-			case 5:
-				console.log(this.props.id);//top right corner
-			break;
-
-			case 48:
-				console.log(this.props.id);//bottom left corner
-			break;
-
-			case 53:
-				console.log(this.props.id);//bottom right corner
-			break;
-
-			case this.props.id > 0 && this.props.id < 5:
-				console.log(this.props.id);//top row
-			break;
-
-			case this.props.id > 48 && this.props.id < 53:
-				console.log(this.props.id);//bottom row
-			break;
-
-			case 6 || 18 || 24 || 30 || 36 || 42:
-				console.log(this.props.id);//left column
-			break;
-
-			case 11 || 17 || 23 || 29 || 35 || 41:
-				console.log(this.props.id);//right column
-			break;
-
-			default:
-				console.log(this.props.id);//everything else
-			break;
+		if(this.props.id === 0) {
+			this.twoReset();
+		} else if (this.props.id === 5) {
+			this.twoReset();
+		} else if (this.props.id === 48) {
+			this.twoReset();
+		} else if (this.props.id === 53) {
+			this.twoReset();
+		} else if (this.props.id > 0 && this.props.id < 5) {
+			this.threeReset();
+		} else if (this.props.id > 48 && this.props.id < 53) {
+			this.threeReset();
+		} else if (this.props.id ===  6 || this.props.id === 12 || this.props.id ===  18 || this.props.id ===  24 || this.props.id ===  30 || this.props.id ===  36 || this.props.id ===  42) {
+			this.threeReset();
+		} else if (this.props.id ===  11 || this.props.id ===  17 || this.props.id ===  23 || this.props.id ===  29 || this.props.id ===  35 || this.props.id ===  41 || this.props.id === 47) {
+			this.threeReset();
+		} else {
+			this.fourReset();
 		}
+
 	}
 
 	render() {
